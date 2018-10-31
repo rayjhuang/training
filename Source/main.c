@@ -90,6 +90,8 @@ DEBUG END */
 
 void main ()
 {
+		unsigned char temp;
+		temp += 2;
     MtTablesInit();
     PhysicalLayerReset();
     PolicyManagerInit();
