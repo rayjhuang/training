@@ -1,0 +1,112 @@
+20171218 CY2311R2V100.000 release to Dennis
+         CY2316CAV100.000 fix two fields in sending SOP'
+20171220 CY2316CAV100.x00 fix Samsung Galaxy A7 stand-by problem
+                          .x00 for testing slow stepping upward, to Chris_RD
+         CY2316CAV100.001 release to GH
+20171221 CY2316CAV100.002 slow upward stepping preferred
+                          start to compliance test
+20171225 CY2316CAV100.003 2.88V HR protect problem
+                          (voltage transition in CC shall not wait for PwrGood)
+                          OCP shall lead to Error Recovery before PD connected
+                          improve CC level calc (consider CC idle)
+20171228                  improve PWR_I calc
+                          debug DAC1->DP, CL->DN (#define DEBUG)
+                          move UVP to F2Off
+                          add OTP hysteresis (change default values, 33K@100->10K@25)
+20171229 CY2316CAV100.004 improve voltage transition in CC mode
+                          PwrGood by VFB (#define CAN1110C0)
+20180102 CY2316CAV100.005 after GRL, let auto-TX-GoodCRC Rev=2.0
+20180103                  remove CapsCounter in non-SIM case
+                          release z:\RD\project\CAN1110\Ray\cy2311_sample_20180103\
+20180110 CY2316CAV100.x05 update PWR_I for PPS request
+                          output OCP to DN
+20180116 CY2316CAV100.006 fix a bug when APDO max. voltage exceed 13V
+                          fix a bug when Captive Cable
+20180117 CY2316CAV100.010 fix a bug when update PWR_I for PPS request
+                          reserve the last revision digit for special debug edition
+2018xxxx                  2.88V-to-HR only in CL
+                          Reject to APDO request by a PD2.0 Request Message
+
+From Ray transfer to Gary
+20180222 CY2316CAV100.011
+                          01. delete: HVDCP type B(20V) functionation
+                          02. fixed bug: After DR_Swap, port data role error
+                          03. Add: implement QC2 and QC3 power profile implement
+                          04. fixed bug: Small step time issue
+                          05. fixed bug: APDO 5V to APDO 3V issue
+                          06. fixed bug: Cable-Compensation is not disable in PPS mode
+                          07. fixed bug: when loading is 3A, OCP error of type-c
+                          08. fixed bug: request min current is 1A in PPS mode
+                          09. fixed bug: TD.PD.VDMD.E4 Applicability for Ellisys
+                          10. fixed bug: TD.PD.VNDI3.E9 Source Capabilities Extended for Ellisys
+                          11. fixed bug: OCP noise issue
+                          note: QC2.0, QC3.0 not test
+
+From Gary transfer to Chris
+20180321 CY2316CAV100.012 duty-based debounce F2HR signals (30ms)
+20180402                  do not stay in DCP after PD connected
+                          do not sacrifice the 6th PDO in 2nd Nego option
+20180402 CY2316CAV100.013 reset Fault-to-Hr de-bounce timer during discharging
+20180411 CY2316CAV100.014 re-define the 2nd Nego.
+
+From Chris transfer to Gary
+20180416 CY2316CAV100.015 fixed bug: ADPO convert to PDO issue which PS_RDY time more then 275ms
+20180420 CY2316CAV100.016 fixed bug: TD.PD.SRC3.E22 Cable Type Detection for Ellisys
+20180424 CY2316CAV100.017 fixed bug: TD.4.9.2 USB Type-C Current Advertisement for Ellisys
+20180504 CY2316CAV100.018 fixed bug: VBUS exceeding 20V can cause overflow
+20180509 CY2316CAV100.019 fixed bug: When eMark cable is plug to source, V5OCP occurs error
+20180516 CY2316CAV100.020 fixed bug: TD.PD.VDDI3.E3 VDM Identity for Ellisys
+                                     When suport VDM response, Product Types (DFP) need to be defined as power Brick
+                          fixed bug: TD.PD.VDMD.E4 Applicability and TD.PD.VDDI3.E3 VDM Identity
+20180517 CY2316CAV100.021 fixed bug: When PD3 transform to PD2, the PDO type is only Fixed
+20180522 CY2316CAV100.022 fixed bug: In the PPS Buck mode and CL occurs, Discharge must be turned off to prevent the voltage from falling too fast
+20180523 CY2316CAV100.023 fixed bug: OTP register setting error(Original: 0x0C ==> 22uA), change to 0x0B(100uA)
+20180604 CY2316CAV100.024 modify 2nd PDO mechanism. Optaion PDO2 = 0, Src_Cap send PDO1 ~ PDO7;
+                                                    Optaion PDO2 = 1, 1st Src_Cap only PDO1,
+                                                                      if the VDM have apple vid, 2st Src_Cap send PDO1 and PDO7
+20180605 CY2316CAV100.025 modify QC3 Continuous mode mechanism
+20180606 CY2316CAV100.026 fixed writer app bug (SID: 0xFF00)
+20180607 CY2316CAV100.027 fixed bug: modify VDO ID B25:B16 to Reserved in PD2
+                          fixed bug: TDA 2.1.3.1 BMC Termination Impedance Test
+                          fixed bug: A failure to see a GoodCRC Message in response to any Message within tReceive (after nRetryCount retries),
+                                     when a Port Pair is Connected, is indicative of a communications failure resulting in a Soft Reset)
+                          fixed bug: PE state mechanism need check type c attached on PE_SRC_Startup
+20180614 CY2316CAV100.028 Modify falling too fast issue, add detect current mechanism
+20180615 CY2316CAV100.029 fixed bug: Fixed bug: OMF bit error
+                          modify under RDO MinAPDO range
+20180616 CY2316CAV100.030 modify When fixed/Augmented all the send PE_SRC_Give_PPS_Status message
+20180618 CY2316CAV100.031 fixed bug: Avoid the simultaneous occurrence of HardRest and CL
+20180628 CY2316CAV100.032 fixed bug: HardReset issue are sent when RDO is required current 0A
+20180629 CY2316CAV100.033 fixed bug: 2nd PDO mechanism bug(no default value for u8NumSrcFixedPdo)
+20180704 CY2316CAV100.034 fixed bug: 6 PDO message incomplete for resend error
+20180704 CY2316CAV100.035 fixed bug: QC3 Continuous mode 200 plus
+20180718 CY2316CAV100.036 fixed bug: Entry QC3 mode, CL flag does false trigger
+20180719 CY2316CAV100.037 fixed bug: Version D IC to Version E IC issue
+                                     QC3 Continuous mode issue
+                                     V5OCP false error issue
+20180720 CY2316CAV100.038 fixed bug: Debug QC3 200us plus and other issue
+20180720 CY2316CAV100.039 Add switch of Vconn OCP
+20180720 CY2316CAV100.040 Delete Version D IC to Version E IC issue
+20180726 CY2316CAV100.041 Add TS determine PDP and default source capability 6 PDO option
+20180806 CY2316CAV100.042 Add current stepping function
+                          Disable QC4 function, because code size exceeded expectations
+20180807 CY2316CAV100.043 Enable QC4 function
+20180821 CY2316CAV100.044 Disable Timer 1 high priority
+                          modify CC point of QC
+20180822 CY2316CAV100.045 Enable Timer 1 high priority
+20180822 CY2316CAV100.046 Disable Timer 1 high priority
+20180822 CY2316CAV100.047 modify VDM issue for PD2
+20180904 CY2316CAV100.048 when QC3 mode, OVP Disable
+20180906 CY2316CAV100.049 Update TS_Dymanic_PDP function for multi port
+20180911 CY2316CAV100.050 redefined OVP mechanism for QC3 mode
+                          Disable cable Compensation at QC mode
+                          redefined DD_SEL and FB_SEL function
+                          QC2 decrement voltage end, need open OVP function (if OVP enable)
+                          QC3 needs Discharge
+                          modify OVP dees not resume OVP in PPSmode
+20180911 CY2316CAV100.051 Update Vconn behavior to avoid V5V crashed
+20180925 CY2316CAV100.052 Reduce source code
+20180928 CY2316CAV100.053 modify check 5A behavior
+20181002 CY2316CAV100.054 modify source cap PDO current, when after HardReset(After: 5A to 5A, Before: 5A to 3A)
+20181003 CY2316CAV100.055 Fix 2th source capability 5A error by setting option table (PDO2 = 1)
+20181004 CY2316CAV100.056 Postpone time to check V5OCP before sending VDM & source capability
