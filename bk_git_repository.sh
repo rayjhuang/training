@@ -12,8 +12,13 @@
 ## source='ssh://git@10.12.3.237:/mnt/app1/git/FW/CAN1108/emarker'
 ## target='https://github.com/rayjhuang/CY2518'
 
+## source='ssh://git@10.12.3.237:/mnt/app1/git/FW/CAN1110/CY2311_R2'
+## target='https://github.com/rayjhuang/CY2311_R2'
+
    source='ssh://git@10.12.3.237:/mnt/app1/git/FW/CAN1112/CY2332_R0'
    target='https://github.com/rayjhuang/CY2332_R0'
+
+   echo -e "==$source\n->$target"
 
    if [ -d ./temp ]; then
       echo Remove ./temp
@@ -31,9 +36,9 @@
                                    | grep -v 'master' \
                                    | grep -v 'HEAD'`; do
          local_branch=`echo $branch | cut -d '/' -f3`
-         git checkout $branch -b $local_branch -f
+         git checkout $branch -b $local_branch --force --no-track
       done
-      git checkout master
+##    git checkout master
 
       git push --all  --repo=$target -f
       git push --tags --repo=$target -f
