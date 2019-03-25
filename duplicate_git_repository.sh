@@ -8,9 +8,12 @@
 ##
 ## rayjhuang@msn.com 2019/03/15
 ## All Rights Are Reserved
-##
-   source='ssh://git@10.12.3.237:/mnt/app1/git/FW//CAN1108/emarker'
-   target='https://github.com/rayjhuang/CY2517'
+
+## source='ssh://git@10.12.3.237:/mnt/app1/git/FW/CAN1108/emarker'
+## target='https://github.com/rayjhuang/CY2518'
+
+   source='ssh://git@10.12.3.237:/mnt/app1/git/FW/CAN1112/CY2332_R0'
+   target='https://github.com/rayjhuang/CY2332_R0'
 
    if [ -d ./temp ]; then
       echo Remove ./temp
@@ -25,8 +28,8 @@
       cd ./temp
       git branch -a
       for branch in `git branch -a | grep '^ *remotes\/origin\/' \
-	                           | grep -v 'master' \
-		   		   | grep -v 'HEAD'`; do
+                                   | grep -v 'master' \
+                                   | grep -v 'HEAD'`; do
          local_branch=`echo $branch | cut -d '/' -f3`
          git checkout $branch -b $local_branch -f
       done
