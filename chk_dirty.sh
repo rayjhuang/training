@@ -1,10 +1,4 @@
 #!/bin/bash
 
-   git status
-   if [[ `git status --porcelain --untracked-files no` ]]
-   then
-      echo DIRTY!!
-   else
-      echo CLEAN!!
-   fi
+   [[ -z $(git status --short | grep '^ *[MA]') ]] || echo DIRTY!!
 
