@@ -17,23 +17,21 @@
    echo -e "==$source\n->$target"
 
    if [ ! -d ./$REPO ]; then
-      git clone $source ./temp
+      git clone $source ./$REPO
    fi
    if [ ! -d ./$REPO ]; then
-      echo No repository found
+      echo No working copy found
    else
       cd ./$REPO
       git branch -a
-      for branch in `git branch -a | grep '^ *remotes\/origin\/' \
-                                   | grep -Ev 'master|HEAD'`; do
-         local_branch=`echo $branch | cut -d '/' -f3`
-         git checkout $branch -B $local_branch --no-track
-      done
+      source ../create_local_branch.bsh
 
       git push --all  --repo=$target -f
       git push --tags --repo=$target -f
+
+      source ../delete_created_branch.bsh
       cd ..
    fi
 
-   rm -rf ./temp
+#  rm -rf ./temp
 
