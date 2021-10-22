@@ -24,12 +24,12 @@
    else
       cd ./$REPO
       git branch -a
-      source ../create_local_branch.bsh
+      source ../create_local_branch.sh
 
       git push --all  --repo=$target -f
       git push --tags --repo=$target -f
 
-      source ../delete_created_branch.bsh
+      source ../delete_created_branch.sh
       cd ..
    fi
 

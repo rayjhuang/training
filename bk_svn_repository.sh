@@ -11,18 +11,22 @@
 #  REPO=4220a1;  PRJ=4220a1
 #  REPO=a8;      PRJ=a8
 #  REPO=CAN1108; PRJ=can1108
-   REPO=CAN1110; PRJ=can1110
+#  REPO=CAN1110; PRJ=can1110
 #  REPO=CAN1112; PRJ=can1112
+   REPO=CAN1124; PRJ=can1124
 
-   source=svn://10.12.3.233:1111/mnt/app1/ray/project/svn/$PRJ.repository
-   target=https://github.com/rayjhuang/$REPO
+   source=svn://10.12.3.239:1111/mnt/app1/ray/project/svn/$PRJ.repository
+   target=ssh://ray@10.12.3.239/mnt/app1/git/HW/$PRJ
+#  target=https://github.com/rayjhuang/$REPO
    echo -e "==$source\n->$target"
 
    if [ -d ./$REPO ]; then
+      echo -e "\t local repository found, fetching....."
       cd ./$REPO
       git svn fetch --all
       cd ..
    else
+      echo -e "\t local repository not found, cloning....."
       git svn clone $source $REPO # takes long!!
    fi
 

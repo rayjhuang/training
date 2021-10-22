@@ -15,4 +15,3 @@
          git branch -D $target_branch
       fi
    done
-
