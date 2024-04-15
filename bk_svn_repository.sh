@@ -13,11 +13,14 @@
 #  REPO=CAN1108; PRJ=can1108
 #  REPO=CAN1110; PRJ=can1110
 #  REPO=CAN1112; PRJ=can1112
-   REPO=CAN1124; PRJ=can1124
+#  REPO=CAN1124; PRJ=can1124
+#  REPO=CAN1125; PRJ=can1125
+#  REPO=CAN1126; PRJ=can1126
+   REPO=CAN1127; PRJ=can1127
 
-   source=svn://10.12.3.239:1111/mnt/app1/ray/project/svn/$PRJ.repository
-   target=ssh://ray@10.12.3.239/mnt/app1/git/HW/$PRJ
-#  target=https://github.com/rayjhuang/$REPO
+   source=svn://10.12.3.239:1111/mnt/app1/git/svn/$PRJ
+#  target=ssh://ray@10.12.3.239/mnt/app1/git/HW/$PRJ
+   target=git@github.com:rayjhuang/$REPO.git
    echo -e "==$source\n->$target"
 
    if [ -d ./$REPO ]; then
